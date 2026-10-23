@@ -2,6 +2,14 @@
 
 本站是纯静态站点：`index.html` 加载 Docsify，浏览器直接读取同目录下的 Markdown。**不需要构建，也不需要 GitHub Actions。** 推送 Markdown 后，GitHub Pages 会自动重新发布。
 
+## 当前部署
+
+- 在线地址：<https://hearthitagi.github.io/fe-engineering/>
+- 仓库：<https://github.com/hearthitagi/fe-engineering>
+- 发布方式：`main` 分支根目录，GitHub Pages 自动构建
+
+`https://hearthitagi.github.io/` 根路径已经有一个独立的博客，所以本站使用项目主页 `/fe-engineering/`，**没有覆盖根站点**。以后更新只需要提交并推送 `main`。
+
 ## 先选仓库名
 
 GitHub Pages 的地址由仓库名决定：
@@ -11,7 +19,7 @@ GitHub Pages 的地址由仓库名决定：
 | `https://<用户名>.github.io/` | `<用户名>.github.io` | 用户主页，站点在根路径。想用 `xxx.github.io` 直接访问，选这个 |
 | `https://<用户名>.github.io/fe-engineering/` | `fe-engineering` | 项目主页，地址会多一层路径 |
 
-下面的命令以「用户主页」为例。把 `<用户名>` 换成你的 GitHub 用户名。
+下面的命令是「从零新建仓库」的通用写法。当前站点已经按项目主页发布；如果要迁移到你自己的账号，把 `<用户名>` 换成对应 GitHub 用户名。
 
 ## 第一次发布
 

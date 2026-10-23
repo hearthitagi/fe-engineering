@@ -2,6 +2,8 @@
 
 > 12 周，只学三件事：**pnpm workspace**、**Vite 8**、**GitHub Actions**。
 > 每章 = 知识讲解 + 跟做实操 + 只给验收的闭卷练习 + 故障演练 + 自测。
+>
+> 在线阅读：<https://hearthitagi.github.io/fe-engineering/>
 
 ---
 
