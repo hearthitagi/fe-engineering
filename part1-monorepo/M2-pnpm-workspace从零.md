@@ -318,6 +318,14 @@ pnpm create vite h5 --template react-ts
 Set-Location ..
 ```
 
+模板可能给每个 app 生成一份 `eslint.config.js`。本教程只在仓库根维护一份 ESLint 配置（M5 创建），现在先把 app 级配置删掉，避免编辑器按目录分别加载：
+
+```powershell
+Remove-Item apps/admin/eslint.config.js, apps/h5/eslint.config.js -ErrorAction SilentlyContinue
+```
+
+M2 阶段暂时没有 ESLint 配置是正常的，M5 会在根补上。如果编辑器已经报 `No tsconfigRootDir was set...`，先看 3.6。
+
 生成后立刻改两个 `package.json` 的 `name`：
 
 - `apps/admin/package.json` → `"name": "@lab/admin"`
@@ -434,6 +442,20 @@ pnpm 拦下了某个依赖的安装脚本。执行 `pnpm approve-builds`，或�
 **3.5 `pnpm dev` 启动后一个应用抢了另一个的端口**
 
 Vite 会自动 +1 端口，但更推荐用 `dev:admin` / `dev:h5` 单独启动。只有联调时才用 `dev`。
+
+**3.6 `No tsconfigRootDir was set, and multiple candidate TSConfigRootDirs are present`**
+
+这不是 `@lab/ui` 的导入错误，而是 ESLint 在 workspace 里同时看到了 `apps/admin` 和 `apps/h5` 两个 tsconfig 根，不知道该以哪个为根。常见原因是 app 级 `eslint.config.js` 还在，或者根配置启用了类型感知却没有指定根目录。
+
+按本教程的约定，只保留仓库根的一份配置：删掉 `apps/admin/eslint.config.js` 与 `apps/h5/eslint.config.js`。如果确实要保留 app 级配置，在每份配置的 `languageOptions.parserOptions` 里加：
+
+```js
+parserOptions: {
+  tsconfigRootDir: import.meta.dirname,
+}
+```
+
+根配置启用 `projectService` 时同理，把 `tsconfigRootDir: import.meta.dirname` 写在根配置里。
 
 ## 4. 故障演练：把 workspace 协议拆掉
 
