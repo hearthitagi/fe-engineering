@@ -1,0 +1,5 @@
+# 本地实验与临时文件（教程仓库自身不需要提交）
+.tmp/
+node_modules/
+.DS_Store
+Thumbs.db
